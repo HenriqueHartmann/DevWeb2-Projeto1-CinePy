@@ -10,7 +10,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.serializers import ModelSerializer
 from rest_framework.response import Response
-from core.models import Genre, Director, Cinema
+from core.models import Genre, Director, Cinema, MovieTime
 
 import json
 
@@ -137,3 +137,15 @@ class CinemaViewSet(ModelViewSet):
     lookup_field = "id"
     queryset = Cinema.objects.all()
     serializer_class = CinemaSerializer
+
+# MovieTime
+class MovieTimeSerializer(ModelSerializer):
+    class Meta:
+        model = MovieTime
+        fields = "__all__"
+
+
+class MovieTimeViewSet(ModelViewSet):
+    lookup_field = "id"
+    queryset = MovieTime.objects.all()
+    serializer_class = MovieTimeSerializer
