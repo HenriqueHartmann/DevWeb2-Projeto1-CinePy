@@ -10,7 +10,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.serializers import ModelSerializer
 from rest_framework.response import Response
-from core.models import Genre, Director
+from core.models import Genre, Director, Cinema
 
 import json
 
@@ -125,3 +125,15 @@ class DirectorViewSet(ModelViewSet):
     lookup_field = "id"
     queryset = Director.objects.all()
     serializer_class = DirectorSerializer
+
+# Cinema
+class CinemaSerializer(ModelSerializer):
+    class Meta:
+        model = Cinema
+        fields = "__all__"
+
+
+class CinemaViewSet(ModelViewSet):
+    lookup_field = "id"
+    queryset = Cinema.objects.all()
+    serializer_class = CinemaSerializer
