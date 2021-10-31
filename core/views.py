@@ -10,10 +10,11 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.serializers import ModelSerializer
 from rest_framework.response import Response
-from core.models import Genre
+from core.models import Genre, Director
 
 import json
 
+# Genre
 @method_decorator(csrf_exempt, name="dispatch")
 class GenreView(View):
     def get(self, request, id=None):
@@ -112,3 +113,15 @@ class GenreViewSet(ModelViewSet):
     lookup_field = "id"
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+
+# Director
+class DirectorSerializer(ModelSerializer):
+    class Meta:
+        model = Director
+        fields = "__all__"
+
+
+class DirectorViewSet(ModelViewSet):
+    lookup_field = "id"
+    queryset = Director.objects.all()
+    serializer_class = DirectorSerializer

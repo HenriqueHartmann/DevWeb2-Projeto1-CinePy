@@ -5,6 +5,7 @@ from core import views
 
 router = routers.DefaultRouter()
 router.register(r'genre-viewset', views.GenreViewSet)
+router.register(r'director-viewset', views.DirectorViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
