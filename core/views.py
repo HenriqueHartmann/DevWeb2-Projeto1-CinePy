@@ -5,9 +5,9 @@ from django.shortcuts import get_object_or_404
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
-from rest_framework import serializers
 from rest_framework.views import APIView
-from rest_framework.serializers import ModelSerializer
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework.response import Response
 from core.models import Genre
 
@@ -94,3 +94,14 @@ class GenreDetail(APIView):
         genre = get_object_or_404(Genre.objects.all(), id=id)
         genre.delete()
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class GenreListGeneric(ListCreateAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+
+class GenreDetailGeneric(RetrieveUpdateDestroyAPIView):
+    lookup_field = "id"
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer

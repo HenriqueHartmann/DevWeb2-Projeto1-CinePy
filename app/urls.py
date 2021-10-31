@@ -8,4 +8,6 @@ urlpatterns = [
     path('genre/<int:id>/', views.GenreView.as_view()),
     path('genre-apiview/', views.GenreList.as_view()),
     path('genre-apiview/<int:id>/', views.GenreDetail.as_view()),
+    path('genre-generic/', views.GenreListGeneric.as_view()),
+    path('genre-generic/<int:id>/', views.GenreDetailGeneric.as_view()),
 ]
