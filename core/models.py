@@ -7,7 +7,7 @@ class Director(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=100)
@@ -25,7 +25,7 @@ class Movie(models.Model):
 
     def __str__(self):
         release = str(self.releaseDate).split('-')[0]
-        return "%s (%s)" %(self.name, release)
+        return "%s (%s)" % (self.name, release)
 
 
 class Cinema(models.Model):
@@ -43,7 +43,7 @@ class MovieTime(models.Model):
         time = str(self.time).split(":")
         del time[2]
         time = ':'.join(map(str, time))
-        return "%s" %(time)
+        return "%s" % (time)
 
 
 class Session(models.Model):
@@ -53,7 +53,7 @@ class Session(models.Model):
         (DUB_TYPE, 'Dubbed'),
         (SUB_TYPE, 'Subtitled')
     )
-    
+
     OPEN_STATUS = 0
     CLOSE_STATUS = 1
     STATUS_CHOICES = (
@@ -69,17 +69,16 @@ class Session(models.Model):
     cinema = models.ForeignKey(Cinema, on_delete=models.PROTECT, related_name="screenings")
 
     def __str__(self):
-        return "%s - %s - %s" %(self.movieTime, self.movie, self.cinema)
+        return "%s - %s - %s" % (self.movieTime, self.movie, self.cinema)
 
 
 class Order(models.Model):
-    
+
     class OrderStatus(models.IntegerChoices):
         CART = 1, 'Cart'
         SHOPPED = 2, 'Shopped'
         PAID = 3, 'Paid'
         WITHDRAWN = 4, 'Withdrawn'
-
 
     status = models.IntegerField(default=OrderStatus.CART, choices=OrderStatus.choices)
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="orders")
