@@ -8,6 +8,7 @@ router.register(r'genre-viewset', views.GenreViewSet)
 router.register(r'director-viewset', views.DirectorViewSet)
 router.register(r'cinema-viewset', views.CinemaViewSet)
 router.register(r'movietime-viewset', views.MovieTimeViewSet)
+router.register(r'movie-viewset', views.MovieViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
