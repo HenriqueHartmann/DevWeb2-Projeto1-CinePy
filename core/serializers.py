@@ -1,14 +1,5 @@
-from rest_framework.serializers import ModelSerializer, CharField, ListField, IntegerField,EmailField, Serializer
+from rest_framework.serializers import ModelSerializer, CharField, ListField, FloatField
 from core import models
-
-
-# User
-class UserSerializer(Serializer):
-    id = IntegerField()
-    username = CharField()
-    email = EmailField()
-    first_name = CharField()
-    last_name = CharField()
 
 
 # Genre
@@ -56,26 +47,47 @@ class MovieDetailSerializer(ModelSerializer):
         depth = 1
 
 
+# Session
+class SessionSerializer(ModelSerializer):
+    class Meta:
+        model = models.Session
+        fields = "__all__"
+
+
+class SessionDetailSerializer(ModelSerializer):
+    type = CharField(source="get_type")
+    status = CharField(source="get_status")
+    movieTime = CharField(source="movieTime.time")
+    movie = CharField(source="movie.name")
+    cinema = CharField(source="cinema.name")
+    class Meta:
+        model = models.Session
+        fields = "__all__"
+
+
 # Cart
 class CartSerializer(ModelSerializer):
+    total = FloatField(source="get_total")
+
     class Meta:
         model = models.Cart
-        fields = "__all__"
+        fields = ("session", "quantity", "total")
         depth = 1
 
 
 # Order
 class OrderSerializer(ModelSerializer):
-    user = UserSerializer()
+    user = CharField(source="user.email")
     status = CharField(source="get_status")
     items = CartSerializer(many=True)
 
     class Meta:
         model = models.Order
-        fields = "__all__"
+        fields = ("id", "status", "user", "items", "total")
 
 
-class SessionSerializer(ModelSerializer):
+class CreateEditOrderSerializer(ModelSerializer):
+    items = CartSerializer()
     class Meta:
-        model = models.Session
-        fields = "__all__"
+        model = models.Order
+        fields = ("user", "items")

@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import F
 from django.contrib.auth.models import User
 
 
@@ -77,6 +78,14 @@ class Session(models.Model):
     def __str__(self):
         return "%s - %s - %s" % (self.movieTime, self.movie, self.cinema)
 
+    @property
+    def get_type(self):
+        return self.get_type_display()
+
+    @property
+    def get_status(self):
+        return self.get_status_display()
+
 
 class Order(models.Model):
 
@@ -93,7 +102,16 @@ class Order(models.Model):
     def get_status(self):
         return self.get_status_display()
 
+    @property
+    def total(self):
+        queryset = self.items.all().aggregate(total=models.Sum(F('quantity')*F('session__price')))
+        return queryset["total"]
+
 class Cart(models.Model):
     quantity = models.IntegerField()
     item = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
     session = models.ForeignKey(Session, on_delete=models.PROTECT, related_name="+")
+
+    @property
+    def get_total(self):
+        return self.session.price * self.quantity
