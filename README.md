@@ -14,3 +14,9 @@ https://cinepy-devweb2.herokuapp.com/
 
 - login: admin
 - senha: admin
+
+## Endpoints
+- genre-viewset/
+- director-viewset/
+- cinema-viewset/
+- movietime-viewset/
