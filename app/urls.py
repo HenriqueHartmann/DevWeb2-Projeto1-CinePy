@@ -9,6 +9,7 @@ router.register(r'director', views.DirectorViewSet)
 router.register(r'cinema', views.CinemaViewSet)
 router.register(r'movietime', views.MovieTimeViewSet)
 router.register(r'movie', views.MovieViewSet)
+router.register(r'order', views.OrderViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

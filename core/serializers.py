@@ -1,5 +1,14 @@
-from rest_framework.serializers import ModelSerializer, CharField, ListField
+from rest_framework.serializers import ModelSerializer, CharField, ListField, IntegerField,EmailField, Serializer
 from core import models
+
+
+# User
+class UserSerializer(Serializer):
+    id = IntegerField()
+    username = CharField()
+    email = EmailField()
+    first_name = CharField()
+    last_name = CharField()
 
 
 # Genre
@@ -43,5 +52,20 @@ class MovieDetailSerializer(ModelSerializer):
 
     class Meta:
         model = models.Movie
+        fields = "__all__"
+        depth = 1
+
+
+# Order
+class OrderSerializer(ModelSerializer):
+    class Meta:
+        model = models.Order
+        fields = "__all__"
+
+
+class OrderDetailSerializer(ModelSerializer):
+    user = UserSerializer()
+    class Meta:
+        model = models.Order
         fields = "__all__"
         depth = 1

@@ -6,3 +6,4 @@ from .genreClass import GenreView
 from .genreGeneric import GenreListGeneric, GenreDetailGeneric
 from .movieTime import MovieTimeViewSet
 from .movie import MovieViewSet
+from .order import OrderViewSet
