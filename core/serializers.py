@@ -68,11 +68,18 @@ class SessionDetailSerializer(ModelSerializer):
 # Cart
 class CartSerializer(ModelSerializer):
     total = FloatField(source="get_total")
+    session = SessionDetailSerializer()
 
     class Meta:
         model = models.Cart
         fields = ("session", "quantity", "total")
         depth = 1
+
+
+class CreateEditCartSerializer(ModelSerializer):
+    class Meta:
+        model = models.Cart
+        fields = ("session", "quantity")
 
 
 # Order
@@ -87,7 +94,15 @@ class OrderSerializer(ModelSerializer):
 
 
 class CreateEditOrderSerializer(ModelSerializer):
-    items = CartSerializer()
+    items = CreateEditCartSerializer(many=True)
     class Meta:
         model = models.Order
         fields = ("user", "items")
+
+    def create(self, validated_data):
+        items = validated_data.pop("items")
+        order = models.Order.objects.create(**validated_data)
+        for item in items:
+            models.Cart.objects.create(item=order, **item)
+        order.save()
+        return order
