@@ -4,15 +4,15 @@ from rest_framework import routers
 from core import views
 
 router = routers.DefaultRouter()
-router.register(r'genre-viewset', views.GenreViewSet)
-router.register(r'director-viewset', views.DirectorViewSet)
-router.register(r'cinema-viewset', views.CinemaViewSet)
-router.register(r'movietime-viewset', views.MovieTimeViewSet)
-router.register(r'movie-viewset', views.MovieViewSet)
+router.register(r'genre', views.GenreViewSet)
+router.register(r'director', views.DirectorViewSet)
+router.register(r'cinema', views.CinemaViewSet)
+router.register(r'movietime', views.MovieTimeViewSet)
+router.register(r'movie', views.MovieViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('genre/', views.GenreView.as_view()),
+    path('genre-basic/', views.GenreView.as_view()),
     path('genre/<int:id>/', views.GenreView.as_view()),
     path('genre-apiview/', views.GenreList.as_view()),
     path('genre-apiview/<int:id>/', views.GenreDetail.as_view()),
