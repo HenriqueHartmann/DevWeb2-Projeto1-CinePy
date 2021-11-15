@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, CharField, ListField
 from core import models
 
 
@@ -35,3 +35,13 @@ class MovieSerializer(ModelSerializer):
     class Meta:
         model = models.Movie
         fields = "__all__"
+
+
+class MovieDetailSerializer(ModelSerializer):
+    director = CharField(source="director.name")
+    genre = ListField(source="get_genre")
+
+    class Meta:
+        model = models.Movie
+        fields = "__all__"
+        depth = 1

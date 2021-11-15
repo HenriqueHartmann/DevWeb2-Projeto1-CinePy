@@ -27,6 +27,12 @@ class Movie(models.Model):
         release = str(self.releaseDate).split('-')[0]
         return "%s (%s)" % (self.name, release)
 
+    @property
+    def get_genre(self):
+        genre_list = []
+        for i in self.genre.all():
+            genre_list.append(i.name)
+        return genre_list
 
 class Cinema(models.Model):
     name = models.CharField(max_length=50)
