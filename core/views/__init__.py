@@ -8,3 +8,4 @@ from .movieTime import MovieTimeViewSet
 from .movie import MovieViewSet
 from .order import OrderViewSet
 from .cart import CartViewSet
+from .session import SessionViewSet

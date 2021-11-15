@@ -56,18 +56,26 @@ class MovieDetailSerializer(ModelSerializer):
         depth = 1
 
 
+# Cart
+class CartSerializer(ModelSerializer):
+    class Meta:
+        model = models.Cart
+        fields = "__all__"
+        depth = 1
+
+
 # Order
 class OrderSerializer(ModelSerializer):
     user = UserSerializer()
     status = CharField(source="get_status")
+    items = CartSerializer(many=True)
 
     class Meta:
         model = models.Order
         fields = "__all__"
 
 
-# Cart
-class CartSerializer(ModelSerializer):
+class SessionSerializer(ModelSerializer):
     class Meta:
-        model = models.Cart
+        model = models.Session
         fields = "__all__"

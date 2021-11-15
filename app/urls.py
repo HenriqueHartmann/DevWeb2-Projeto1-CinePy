@@ -9,6 +9,7 @@ router.register(r'director', views.DirectorViewSet)
 router.register(r'cinema', views.CinemaViewSet)
 router.register(r'movietime', views.MovieTimeViewSet)
 router.register(r'movie', views.MovieViewSet)
+router.register(r'session', views.SessionViewSet)
 router.register(r'order', views.OrderViewSet)
 router.register(r'cart', views.CartViewSet)
 
