@@ -64,3 +64,10 @@ class OrderSerializer(ModelSerializer):
     class Meta:
         model = models.Order
         fields = "__all__"
+
+
+# Cart
+class CartSerializer(ModelSerializer):
+    class Meta:
+        model = models.Cart
+        fields = "__all__"
