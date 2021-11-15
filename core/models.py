@@ -89,6 +89,9 @@ class Order(models.Model):
     status = models.IntegerField(default=OrderStatus.CART, choices=OrderStatus.choices)
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="orders")
 
+    @property
+    def get_status(self):
+        return self.get_status_display()
 
 class Cart(models.Model):
     quantity = models.IntegerField()

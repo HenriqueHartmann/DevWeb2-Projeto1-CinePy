@@ -58,14 +58,9 @@ class MovieDetailSerializer(ModelSerializer):
 
 # Order
 class OrderSerializer(ModelSerializer):
-    class Meta:
-        model = models.Order
-        fields = "__all__"
-
-
-class OrderDetailSerializer(ModelSerializer):
     user = UserSerializer()
+    status = CharField(source="get_status")
+
     class Meta:
         model = models.Order
         fields = "__all__"
-        depth = 1
