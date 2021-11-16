@@ -106,3 +106,12 @@ class CreateEditOrderSerializer(ModelSerializer):
             models.Cart.objects.create(item=order, **item)
         order.save()
         return order
+
+    def update(self, instance, validated_data):
+        items = validated_data.pop("items")
+        if items:
+            instance.items.all().delete()
+            for item in items:
+                models.Cart.objects.create(item=instance, **item)
+            instance.save()
+            return instance
