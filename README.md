@@ -14,3 +14,12 @@ https://cinepy-devweb2.herokuapp.com/
 
 - login: admin
 - senha: admin
+
+## Endpoints
+- genre/
+- director/
+- cinema/
+- movietime/
+- movie/
+- session/
+- order/
