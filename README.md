@@ -16,6 +16,8 @@ https://cinepy-devweb2.herokuapp.com/
 - senha: admin
 
 ## Endpoints
+- token/
+- token/refresh/
 - genre/
 - director/
 - cinema/
