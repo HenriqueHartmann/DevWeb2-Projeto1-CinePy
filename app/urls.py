@@ -1,6 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 from core import views
 
 router = routers.DefaultRouter()
@@ -14,6 +18,8 @@ router.register(r'order', views.OrderViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('genre-basic/', views.GenreView.as_view()),
     path('genre/<int:id>/', views.GenreView.as_view()),
     path('genre-apiview/', views.GenreList.as_view()),
