@@ -12,8 +12,19 @@ O projeto tem o intuito fornecer um sistema capaz de facilitar a visualização 
 
 https://cinepy-devweb2.herokuapp.com/
 
+## Users
+
+Superuser
 - login: admin
 - senha: admin
+
+Admin
+- login: admin1
+- senha: mypassw123
+
+Common
+- login: buyer1
+- senha: mypassw123
 
 ## Endpoints
 - token/
