@@ -21,7 +21,7 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('genre-basic/', views.GenreView.as_view()),
-    path('genre/<int:id>/', views.GenreView.as_view()),
+    path('genre-basic/<int:id>/', views.GenreView.as_view()),
     path('genre-apiview/', views.GenreList.as_view()),
     path('genre-apiview/<int:id>/', views.GenreDetail.as_view()),
     path('genre-generic/', views.GenreListGeneric.as_view()),
